@@ -28,6 +28,12 @@ CP2112 driver is independently implemented.
 | **MCP23017** | 16-bit I/O expander for LED signal reading |
 | **Schottky diode (BAT54 etc.)** | Non-inverting LED readout |
 
+![Image](https://github.com/user-attachments/assets/716f254f-b0d3-4914-86fc-3da4a7446c0a)
+![Image](https://github.com/user-attachments/assets/5fffc91c-1c30-427f-8138-211dd84e5ede)
+![Image](https://github.com/user-attachments/assets/ff155845-1fe7-47b1-8361-45ed5bcddbd8)
+![Image](https://github.com/user-attachments/assets/704ba817-b20c-4b19-b932-965842e848bc)
+![Image](https://github.com/user-attachments/assets/4b2dc1d1-0c37-475e-ac95-eb289cec8024)
+
 ---
 
 ## ⚡ Wiring Summary
@@ -110,6 +116,10 @@ Edit `config.json`:
 
 When any slot transitions to **FULL**,  
 a notification will be posted with the current slot summary.
+
+
+![Image](https://github.com/user-attachments/assets/b52c5c66-6596-4232-a6a9-a9c52baddf87)
+![Image](https://github.com/user-attachments/assets/14028d89-0623-4def-bd6e-0c26dbc534c6)
 
 ---
 
