@@ -1,0 +1,1 @@
+pyinstaller --onefile --name "bc-211_monitor" --icon "static\favicon.ico"  app.py

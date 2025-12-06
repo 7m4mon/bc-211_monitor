@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BC-211 Battery Monitor</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        #slot-container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            max-width: 800px;
+        }
+
+        .slot {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .state-empty  { background-color: #e0e0e0; }
+        .state-charging { background-color: #ffe29a; }
+        .state-full { background-color: #c8ffc8; }
+        .state-err { background-color: #ffb5b5; }
+
+        #ntfy_url {
+            font-family: monospace;
+            background: #f2f2f2;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        #status {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<h1>BC-211 Battery Monitor</h1>
+
+<p>
+    This dashboard updates automatically every second.<br>
+    Notification URL (read-only):<br>
+    <span id="ntfy_url">(loading...)</span>
+</p>
+
+<div id="slot-container"></div>
+
+<div id="status">Waiting for data...</div>
+
+<script>
+function updateUI() {
+    fetch("/api/status")
+        .then(r => r.json())
+        .then(data => {
+            const container = document.getElementById("slot-container");
+            container.innerHTML = "";
+
+            // 表示専用の ntfy_url
+            document.getElementById("ntfy_url").textContent =
+                data.ntfy_url || "(not set)";
+
+            data.slots.forEach(s => {
+                const div = document.createElement("div");
+                div.classList.add("slot");
+
+                // 状態に応じて背景色変更
+                let css = "";
+                if (s.state === "SLOT EMPTY") css = "state-empty";
+                else if (s.state === "CHARGING") css = "state-charging";
+                else if (s.state === "FULL") css = "state-full";
+                else css = "state-err";
+
+                div.classList.add(css);
+
+                div.innerHTML = `
+                    <strong>Slot ${s.slot}</strong><br>
+                    State: ${s.state}<br>
+                    R=${s.R}, G=${s.G}
+                `;
+
+                container.appendChild(div);
+            });
+
+            document.getElementById("status").textContent =
+                "Last updated: " + new Date(data.timestamp * 1000).toLocaleTimeString();
+
+        })
+        .catch(err => {
+            document.getElementById("status").textContent =
+                "Error: " + err;
+        });
+}
+
+// 1秒ごとの自動更新
+setInterval(updateUI, 1000);
+updateUI();
+</script>
+
+</body>
+</html>
