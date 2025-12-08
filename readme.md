@@ -1,4 +1,7 @@
 # BC-211 Battery Monitor  
+
+![Image](https://github.com/user-attachments/assets/a327427e-4a2f-4fd8-ae7f-dbb6a275f31b)
+
 Web-based multi-slot battery monitor for the Icom **BC-211** six-slot charger.  
 Reads the LED status signals via **MCP23017 (I²C)** and a **CP2112 USB–I²C bridge**,  
 then displays real-time information on a browser and sends optional notifications.
@@ -30,7 +33,6 @@ CP2112 driver is independently implemented.
 
 ![Image](https://github.com/user-attachments/assets/716f254f-b0d3-4914-86fc-3da4a7446c0a)
 ![Image](https://github.com/user-attachments/assets/5fffc91c-1c30-427f-8138-211dd84e5ede)
-![Image](https://github.com/user-attachments/assets/ff155845-1fe7-47b1-8361-45ed5bcddbd8)
 ![Image](https://github.com/user-attachments/assets/704ba817-b20c-4b19-b932-965842e848bc)
 ![Image](https://github.com/user-attachments/assets/4b2dc1d1-0c37-475e-ac95-eb289cec8024)
 
@@ -102,9 +104,11 @@ Open:
 http://localhost:5000
 ```
 
+<img width="883" height="476" alt="Image" src="https://github.com/user-attachments/assets/a227e528-69dc-4715-9361-4d5858280215" />  
+
 ---
 
-## 🔔 Optional: Push Notifications (ntfy.sh)
+## 🔔 Push Notifications (ntfy.sh)
 
 Edit `config.json`:
 
